@@ -1,0 +1,14 @@
+<launch>
+    <arg name="use_map_topic" default="true"/>
+    <arg name="scan_topic" default="/scan" />
+
+    <rosparam command="load" file="$(find my_turtlebot_localization)/params/amcl.yaml" />
+
+    <node pkg="amcl" type="amcl" name="amcl">
+        <remap from="scan" to="$(arg scan_topic)"/>
+    </node>
+
+    <include file="$(find my_turtlebot_mapping)/launch/gmapping.launch"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d ~/home/user/ws/simulation_ws/rviz/default.rviz"/>
+</launch>
