@@ -1,0 +1,13 @@
+<launch>
+    <rosparam command="load" file="$(find my_turtlebot_mapping)/params/slam_gmapping.yaml" />
+
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <!-- simulation remap from="scan" to="/scan"/ -->
+        <!-- real -->
+        <remap from="scan" to ="/scan"/>
+    </node>
+
+    <!-- <node pkg="map_server" type="map_server" name="map_server" output="screen"
+     args="$(find my_turtlebot_mapping)/map/my_map.pgm">
+    </node> -->
+</launch>
